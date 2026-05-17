@@ -69,12 +69,18 @@ export default function Landing() {
           into decisions you didn't intend to make. This study teaches you to see them.
         </p>
 
-        <div className="reveal reveal-4" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-          <button className="btn-primary" onClick={() => navigate(session ? '/simulations' : '/pretest')}>
-            Begin the Study →
-          </button>
-          <button className="btn-ghost" onClick={() => navigate('/about')}>
-            How it works
+        <div className="reveal reveal-4" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
+          <a
+            href="https://qualtricsxm7xb7vrbg9.qualtrics.com/jfe/form/SV_b3HTkuXMWkNJRBQ"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-primary"
+            style={{ textDecoration: 'none', display: 'inline-flex' }}
+          >
+            Start Pre-Survey →
+          </a>
+          <button className="btn-ghost" onClick={() => navigate('/pretest')}>
+            Already done? Begin Study
           </button>
         </div>
 
@@ -299,10 +305,15 @@ export default function Landing() {
         <p style={{ color: 'var(--text-muted)', marginBottom: 32, fontSize: '1rem' }}>
           The study takes approximately 15–20 minutes.
         </p>
-        <button className="btn-primary glow-amber" style={{ fontSize: '1rem', padding: '16px 40px' }}
-          onClick={() => navigate(session ? '/simulations' : '/pretest')}>
-          Start the Study →
-        </button>
+        <a
+          href="https://qualtricsxm7xb7vrbg9.qualtrics.com/jfe/form/SV_b3HTkuXMWkNJRBQ"
+          target="_blank"
+          rel="noreferrer"
+          className="btn-primary glow-amber"
+          style={{ fontSize: '1rem', padding: '16px 40px', textDecoration: 'none', display: 'inline-flex' }}
+        >
+          Start Pre-Survey →
+        </a>
       </section>
     </main>
   )
