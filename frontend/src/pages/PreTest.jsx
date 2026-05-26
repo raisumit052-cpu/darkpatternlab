@@ -7,12 +7,18 @@ export default function PreTest() {
   const { initSession } = useSession()
   const [consented, setConsented] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   async function handleBegin() {
     setLoading(true)
-    await initSession()
-    setLoading(false)
-    navigate('/simulations')
+    setError(null)
+    try {
+      await initSession()
+      navigate('/simulations')
+    } catch {
+      setError('The server is starting up — please wait 30 seconds and try again.')
+      setLoading(false)
+    }
   }
 
   return (
@@ -89,6 +95,11 @@ export default function PreTest() {
         >
           {loading ? 'Starting session…' : 'Begin Simulations →'}
         </button>
+        {error && (
+          <p style={{ marginTop: 16, color: 'var(--accent-amber)', fontSize: '0.88rem' }}>
+            {error}
+          </p>
+        )}
       </div>
     </main>
   )
