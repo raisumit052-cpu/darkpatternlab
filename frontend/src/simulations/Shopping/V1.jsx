@@ -22,12 +22,11 @@ function useCountdown(seconds) {
 }
 
 export default function ShoppingV1() {
-  const { markComplete, onMouseMove, onFirstClick, intervention } = useSimResult('shopping')
+  const { markComplete, logEvent, onMouseMove, onFirstClick, intervention } = useSimResult('shopping')
   const countdown = useCountdown(600)
   const [step, setStep] = useState('product')
   const [insuranceChecked, setInsuranceChecked] = useState(true)
   const [showOverlay, setShowOverlay] = useState(false)
-  const [flashCart, setFlashCart] = useState(false)
   const [fell, setFell] = useState(false)
 
   function markDone(didFell) {
@@ -38,8 +37,7 @@ export default function ShoppingV1() {
   function handleAddToCart() {
     onFirstClick()
     logEvent('shopping', 'click', 'add_to_cart')
-    setFlashCart(true)
-    setTimeout(() => { setFlashCart(false); setStep('cart') }, 300)
+    setTimeout(() => setStep('cart'), 300)
   }
 
   const totalWithInsurance = insuranceChecked ? PRODUCT.price + 8.99 : PRODUCT.price

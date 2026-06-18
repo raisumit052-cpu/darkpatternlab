@@ -99,7 +99,6 @@ export default function ExplanationOverlay({ pattern, explanation, cognitiveHook
                   flexDirection: 'column',
                   alignItems: 'center',
                   gap: 4,
-                  background: 'transparent',
                   border: `1px solid ${confidence >= star || hovered >= star ? 'var(--accent-amber)' : 'var(--border)'}`,
                   padding: '10px 16px',
                   cursor: 'pointer',

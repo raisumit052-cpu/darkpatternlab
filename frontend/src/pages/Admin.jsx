@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const ADMIN_TOKEN = 'darklab-admin-2025'
 

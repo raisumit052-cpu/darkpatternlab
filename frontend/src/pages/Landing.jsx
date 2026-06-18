@@ -1,318 +1,240 @@
 import { useNavigate } from 'react-router-dom'
-import { useSession } from '../context/SessionContext'
 
 const DARK_PATTERNS = [
-  { name: 'Confirmshaming', desc: 'Guilt-tripping users into compliance via emotionally loaded opt-out labels.' },
-  { name: 'Roach Motel', desc: 'Easy to sign up. Deliberately impossible to leave.' },
-  { name: 'Hidden Costs', desc: 'Fees that materialise only at the final checkout step.' },
-  { name: 'False Urgency', desc: 'Artificial countdown timers and fake scarcity to trigger panic decisions.' },
-  { name: 'Privacy Zuckering', desc: 'Tricking users into sharing more data than intended through complexity.' },
-  { name: 'Sneak into Basket', desc: 'Pre-selected extras added to your cart without explicit consent.' },
+  { name: 'Confirmshaming', desc: 'Copy that makes a safe choice feel embarrassing or selfish.' },
+  { name: 'Roach Motel', desc: 'Easy entry, but cancellation or withdrawal is hidden behind extra steps.' },
+  { name: 'Hidden Costs', desc: 'Fees that appear late, after a user has already invested time.' },
+  { name: 'False Urgency', desc: 'Countdowns and scarcity messages that pressure quick decisions.' },
+  { name: 'Privacy Zuckering', desc: 'Confusing privacy choices that lead users to share more data.' },
+  { name: 'Sneak into Basket', desc: 'Optional extras added unless the user actively removes them.' },
 ]
 
 const STATS = [
-  { value: '1 in 10', label: 'shopping sites use hidden costs' },
-  { value: '95%', label: 'of users don\'t read cookie banners' },
-  { value: '67%', label: 'of apps use deceptive UI patterns' },
+  { value: '4', label: 'interactive simulations' },
+  { value: '15-20 min', label: 'typical completion time' },
+  { value: 'Anonymous', label: 'study participation' },
+]
+
+const FLOW = [
+  { step: '01', title: 'Pre-test survey', desc: 'Record your starting awareness before the activity.' },
+  { step: '02', title: 'Simulations', desc: 'Try realistic shopping, cookie, subscription, and app screens.' },
+  { step: '03', title: 'Feedback', desc: 'See short explanations of the interface patterns you encountered.' },
+  { step: '04', title: 'Results', desc: 'Review your responses and compare aggregate study trends.' },
+  { step: '05', title: 'Post-test survey', desc: 'Complete the final survey so the study can measure change.' },
 ]
 
 export default function Landing() {
   const navigate = useNavigate()
-  const { session } = useSession()
 
   return (
     <main>
-      {/* Hero */}
-      <section style={{
-        minHeight: 'calc(100vh - 60px)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '80px 24px',
-      }}>
-        <div className="reveal reveal-1">
-          <span className="warning-badge">
-            <span style={{ fontSize: '0.6rem' }}>◆</span>
-            Research Study · York St John University
-          </span>
-        </div>
+      <section className="landing-shell">
+        <div className="landing-hero">
+          <div className="reveal reveal-1">
+            <span className="warning-badge">York St John University research study</span>
+            <h1 className="landing-title">Dark Pattern Lab</h1>
+            <p className="landing-lede font-body">
+              A dissertation study exploring whether short, timely explanations can help
+              people recognise manipulative interface patterns in everyday websites.
+            </p>
 
-        <h1 className="reveal reveal-2 font-display" style={{
-          fontSize: 'clamp(2.8rem, 7vw, 5.5rem)',
-          fontWeight: 800,
-          lineHeight: 1.0,
-          letterSpacing: '-0.03em',
-          marginTop: 24,
-          marginBottom: 24,
-          color: 'var(--text-primary)',
-        }}>
-          The web is<br />
-          <span style={{
-            color: 'var(--accent-amber)',
-            display: 'inline-block',
-          }} className="glow-amber-text">
-            designed against
-          </span>
-          <br />you.
-        </h1>
-
-        <p className="reveal reveal-3 font-body" style={{
-          fontSize: '1.2rem',
-          color: 'var(--text-muted)',
-          maxWidth: 560,
-          lineHeight: 1.7,
-          marginBottom: 40,
-        }}>
-          Dark patterns are manipulative design techniques used by websites to trick you
-          into decisions you didn't intend to make. This study teaches you to see them.
-        </p>
-
-        <div className="reveal reveal-4" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
-          <a
-            href="https://qualtricsxm7xb7vrbg9.qualtrics.com/jfe/form/SV_b3HTkuXMWkNJRBQ"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-primary"
-            style={{ textDecoration: 'none', display: 'inline-flex' }}
-          >
-            Start Pre-Survey →
-          </a>
-          <button className="btn-ghost" onClick={() => navigate('/pretest')}>
-            Already done? Begin Study
-          </button>
-        </div>
-
-        {/* Stats row */}
-        <div className="reveal reveal-5" style={{
-          display: 'flex',
-          gap: 40,
-          marginTop: 72,
-          flexWrap: 'wrap',
-        }}>
-          {STATS.map(({ value, label }) => (
-            <div key={label}>
-              <div className="font-display" style={{
-                fontSize: '2rem',
-                fontWeight: 800,
-                color: 'var(--accent-cyan)',
-                lineHeight: 1,
-              }}>
-                {value}
-              </div>
-              <div className="font-mono" style={{
-                fontSize: '0.72rem',
-                color: 'var(--text-muted)',
-                letterSpacing: '0.06em',
-                marginTop: 6,
-                textTransform: 'uppercase',
-              }}>
-                {label}
-              </div>
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+              <a
+                href="https://qualtricsxm7xb7vrbg9.qualtrics.com/jfe/form/SV_b3HTkuXMWkNJRBQ"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary"
+                style={{ textDecoration: 'none' }}
+              >
+                Start pre-survey
+              </a>
+              <button className="btn-ghost" onClick={() => navigate('/pretest')}>
+                Begin study
+              </button>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Divider */}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        <div className="divider" />
-      </div>
-
-      {/* What are dark patterns */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 24px' }}>
-        <div style={{ marginBottom: 48 }}>
-          <span className="font-mono" style={{
-            fontSize: '0.72rem',
-            color: 'var(--accent-amber)',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-          }}>
-            01 / What are dark patterns
-          </span>
-          <h2 className="font-display" style={{
-            fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
-            fontWeight: 700,
-            marginTop: 12,
-            letterSpacing: '-0.02em',
-          }}>
-            Manipulation engineered into design.
-          </h2>
-          <p style={{ color: 'var(--text-muted)', maxWidth: 540, marginTop: 12 }}>
-            First documented by UX researcher Harry Brignull in 2010, dark patterns exploit
-            cognitive biases — the mental shortcuts our brains rely on — to benefit businesses
-            at the expense of users.
-          </p>
-        </div>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: 1,
-          border: '1px solid var(--border)',
-        }}>
-          {DARK_PATTERNS.map(({ name, desc }, i) => (
-            <div key={name} className="card" style={{
-              borderWidth: 0,
-              borderRight: '1px solid var(--border)',
-              borderBottom: '1px solid var(--border)',
-              transition: 'background 0.2s',
-              cursor: 'default',
-            }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-elevated)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--bg-surface)'}
-            >
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
-                <span className="font-mono" style={{
-                  fontSize: '0.65rem',
-                  color: 'var(--accent-amber)',
-                  opacity: 0.6,
-                  marginTop: 3,
-                  minWidth: 20,
-                }}>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
+            <div className="landing-stats">
+              {STATS.map(({ value, label }) => (
+                <div key={label} className="card" style={{ padding: '18px 20px' }}>
                   <div className="font-display" style={{
-                    fontWeight: 700,
-                    fontSize: '0.95rem',
-                    letterSpacing: '0.01em',
-                    marginBottom: 6,
-                    color: 'var(--text-primary)',
+                    fontSize: '1.35rem',
+                    fontWeight: 800,
+                    color: 'var(--accent-cyan)',
+                    lineHeight: 1.1,
+                    marginBottom: 5,
                   }}>
-                    {name}
+                    {value}
                   </div>
                   <div style={{
                     color: 'var(--text-muted)',
-                    fontSize: '0.9rem',
-                    lineHeight: 1.6,
+                    fontSize: '0.86rem',
+                    lineHeight: 1.45,
                   }}>
+                    {label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <aside className="hero-panel reveal reveal-2" aria-label="Study route">
+            <div style={{ marginBottom: 8 }}>
+              <span className="section-kicker" style={{ marginBottom: 6 }}>Study route</span>
+              <h2 style={{
+                fontSize: '1.28rem',
+                lineHeight: 1.25,
+                fontWeight: 800,
+                margin: 0,
+                color: 'var(--text-primary)',
+              }}>
+                What participation looks like
+              </h2>
+            </div>
+
+            {FLOW.slice(0, 4).map(({ step, title, desc }) => (
+              <div key={step} className="hero-panel-row">
+                <span className="step-dot">{step}</span>
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: '0.95rem', marginBottom: 3 }}>
+                    {title}
+                  </div>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.5 }}>
                     {desc}
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
+          </aside>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <span className="section-kicker">Common examples</span>
+        <h2 className="section-title">Patterns participants will learn to identify</h2>
+        <p className="section-copy font-body">
+          Dark patterns are interface choices that steer people toward outcomes they may not
+          have chosen freely. The study uses fictional websites so participants can practise
+          spotting these patterns without entering personal data or making real purchases.
+        </p>
+
+        <div className="pattern-grid">
+          {DARK_PATTERNS.map(({ name, desc }, i) => (
+            <article key={name} className="pattern-card">
+              <div style={{ display: 'flex', gap: 13, alignItems: 'flex-start' }}>
+                <span className="step-dot" style={{ width: 34, height: 34, fontSize: '0.72rem' }}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3 style={{
+                    fontSize: '0.98rem',
+                    lineHeight: 1.25,
+                    fontWeight: 800,
+                    margin: '0 0 7px',
+                    color: 'var(--text-primary)',
+                  }}>
+                    {name}
+                  </h3>
+                  <p style={{
+                    color: 'var(--text-muted)',
+                    fontSize: '0.91rem',
+                    lineHeight: 1.58,
+                    margin: 0,
+                  }}>
+                    {desc}
+                  </p>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* How the study works */}
-      <section style={{
-        background: 'var(--bg-surface)',
-        borderTop: '1px solid var(--border)',
-        borderBottom: '1px solid var(--border)',
-        padding: '64px 24px',
-      }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <span className="font-mono" style={{
-            fontSize: '0.72rem',
-            color: 'var(--accent-cyan)',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-          }}>
-            02 / Research flow
-          </span>
-          <h2 className="font-display" style={{
-            fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
-            fontWeight: 700,
-            marginTop: 12,
-            marginBottom: 40,
-            letterSpacing: '-0.02em',
-          }}>
-            Five phases. One insight.
-          </h2>
+      <section className="flow-band">
+        <div className="section-shell">
+          <span className="section-kicker">Research flow</span>
+          <h2 className="section-title">A short study with clear steps</h2>
+          <p className="section-copy font-body">
+            The website guides participants through the activity in order. Each response is
+            connected only to an anonymous session ID.
+          </p>
 
-          <div style={{ display: 'flex', gap: 0, flexWrap: 'wrap' }}>
-            {[
-              { step: '01', title: 'Pre-Test Survey', desc: 'Baseline awareness questions before any exposure.' },
-              { step: '02', title: 'Simulations', desc: 'Interact with four realistic fake interfaces containing dark patterns.' },
-              { step: '03', title: 'Intervention', desc: 'Educational cues reveal the manipulation in real-time.' },
-              { step: '04', title: 'Re-Interaction', desc: 'Face similar scenarios again with your new awareness.' },
-              { step: '05', title: 'Post-Test Survey', desc: 'Measure how much your resistance improved.' },
-            ].map(({ step, title, desc }, i, arr) => (
-              <div key={step} style={{
-                flex: '1 1 180px',
-                padding: '24px 28px',
-                borderRight: i < arr.length - 1 ? '1px solid var(--border)' : 'none',
-                position: 'relative',
-              }}>
-                <div className="font-mono" style={{
-                  fontSize: '2rem',
-                  fontWeight: 300,
+          <div className="flow-grid">
+            {FLOW.map(({ step, title, desc }) => (
+              <article key={step} className="flow-card">
+                <div style={{
                   color: 'var(--accent-amber)',
-                  opacity: 0.3,
-                  lineHeight: 1,
-                  marginBottom: 12,
+                  fontWeight: 800,
+                  fontSize: '0.82rem',
+                  marginBottom: 10,
                 }}>
                   {step}
                 </div>
-                <div className="font-display" style={{
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  marginBottom: 8,
-                  color: 'var(--text-primary)',
+                <h3 style={{
+                  fontWeight: 800,
+                  fontSize: '0.96rem',
+                  lineHeight: 1.28,
+                  margin: '0 0 8px',
                 }}>
                   {title}
-                </div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
+                </h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.86rem', lineHeight: 1.55, margin: 0 }}>
                   {desc}
-                </div>
-              </div>
+                </p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Ethics notice */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px' }}>
-        <div style={{
-          border: '1px solid var(--border)',
-          padding: '28px 32px',
-          display: 'flex',
-          gap: 24,
-          alignItems: 'flex-start',
-        }}>
-          <span style={{ fontSize: '1.4rem', lineHeight: 1, marginTop: 2 }}>🔒</span>
+      <section className="section-shell">
+        <div className="ethics-note">
+          <span className="privacy-mark" aria-hidden="true">✓</span>
           <div>
-            <div className="font-display" style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: 6 }}>
-              Your privacy is protected by design
-            </div>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, maxWidth: 640 }}>
-              No personal information is collected. You are assigned an anonymous session ID.
-              All data is anonymised before storage and cannot be linked back to you.
-              Participation is voluntary and you may leave at any time.
-              This study has been reviewed under the York St John University ethics guidelines.
+            <h2 style={{
+              fontSize: '1.05rem',
+              fontWeight: 800,
+              margin: '0 0 8px',
+              color: 'var(--text-primary)',
+            }}>
+              Privacy and consent
+            </h2>
+            <p className="font-body" style={{
+              color: 'var(--text-muted)',
+              fontSize: '0.98rem',
+              lineHeight: 1.68,
+              maxWidth: 760,
+              margin: 0,
+            }}>
+              No personal information is collected by this website. Participants are assigned
+              an anonymous session ID, participation is voluntary, and the study follows York
+              St John University ethics guidance.
             </p>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{
-        textAlign: 'center',
-        padding: '80px 24px 100px',
-        borderTop: '1px solid var(--border)',
-      }}>
-        <h2 className="font-display" style={{
-          fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+      <section className="centered-cta">
+        <span className="section-kicker">Ready when you are</span>
+        <h2 style={{
+          fontSize: '2rem',
           fontWeight: 800,
-          letterSpacing: '-0.02em',
-          marginBottom: 16,
+          lineHeight: 1.2,
+          margin: '0 0 12px',
+          color: 'var(--text-primary)',
         }}>
-          Ready to test your awareness?
+          Start with the pre-survey
         </h2>
-        <p style={{ color: 'var(--text-muted)', marginBottom: 32, fontSize: '1rem' }}>
-          The study takes approximately 15–20 minutes.
+        <p className="font-body" style={{ color: 'var(--text-muted)', marginBottom: 28, fontSize: '1rem' }}>
+          The full study usually takes 15-20 minutes.
         </p>
         <a
           href="https://qualtricsxm7xb7vrbg9.qualtrics.com/jfe/form/SV_b3HTkuXMWkNJRBQ"
           target="_blank"
           rel="noreferrer"
-          className="btn-primary glow-amber"
-          style={{ fontSize: '1rem', padding: '16px 40px', textDecoration: 'none', display: 'inline-flex' }}
+          className="btn-primary"
+          style={{ textDecoration: 'none', padding: '14px 34px' }}
         >
-          Start Pre-Survey →
+          Start pre-survey
         </a>
       </section>
     </main>

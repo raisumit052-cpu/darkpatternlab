@@ -3,13 +3,6 @@ import { useSimResult } from '../../hooks/useSimResult'
 import InterventionTooltip from '../../components/InterventionTooltip'
 import ExplanationOverlay from '../../components/ExplanationOverlay'
 
-const STEPS = [
-  { key: 'start', title: 'Account Settings' },
-  { key: 'reason', title: 'Help us improve' },
-  { key: 'offer', title: 'Special offer for you' },
-  { key: 'confirm', title: 'Are you sure?' },
-]
-
 export default function SubscriptionV1() {
   const { markComplete, onMouseMove, onFirstClick, intervention } = useSimResult('subscription')
   const [step, setStep] = useState(0)

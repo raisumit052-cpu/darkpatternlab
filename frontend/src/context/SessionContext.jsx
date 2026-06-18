@@ -1,22 +1,22 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 const SessionContext = createContext(null)
 
-export function SessionProvider({ children }) {
-  const [session, setSession] = useState(null)
-  const [loading, setLoading] = useState(true)
+function getStoredSession() {
+  const stored = localStorage.getItem('dpl_session')
+  if (!stored) return null
 
-  useEffect(() => {
-    const stored = localStorage.getItem('dpl_session')
-    if (stored) {
-      try {
-        setSession(JSON.parse(stored))
-      } catch {
-        localStorage.removeItem('dpl_session')
-      }
-    }
-    setLoading(false)
-  }, [])
+  try {
+    return JSON.parse(stored)
+  } catch {
+    localStorage.removeItem('dpl_session')
+    return null
+  }
+}
+
+export function SessionProvider({ children }) {
+  const [session, setSession] = useState(getStoredSession)
+  const loading = false
 
   async function initSession() {
     const res = await fetch('/api/session/create', { method: 'POST' })
@@ -67,6 +67,7 @@ export function SessionProvider({ children }) {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useSession() {
   return useContext(SessionContext)
 }

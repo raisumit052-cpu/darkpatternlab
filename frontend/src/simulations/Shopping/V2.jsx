@@ -14,7 +14,7 @@ export default function ShoppingV2() {
   const [selectedBundle, setSelectedBundle] = useState('premium')
   const [showOverlay, setShowOverlay] = useState(false)
   const [fell, setFell] = useState(false)
-  const [viewers] = useState(Math.floor(Math.random() * 12) + 18)
+  const [viewers] = useState(() => Math.floor(Math.random() * 12) + 18)
 
   const bundles = {
     basic: { label: 'Basic', price: 64.99, desc: 'Trainers only' },

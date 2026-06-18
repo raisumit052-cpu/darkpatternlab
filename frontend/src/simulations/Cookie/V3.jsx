@@ -72,16 +72,16 @@ export default function CookieV3() {
               <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: 16 }}>Cookie Settings — Page {page} of 3</div>
               {page === 1 && ['necessary', 'analytics'].map(key => (
                 <ToggleRow key={key} label={TOGGLE_LABELS[key].label} locked={TOGGLE_LABELS[key].locked} checked={toggles[key]}
-                  onChange={v => setToggles(t => ({ ...t, [key]: v }))} intervention={intervention} />
+                  onChange={v => setToggles(t => ({ ...t, [key]: v }))} />
               ))}
               {page === 2 && ['marketing', 'personalisation'].map(key => (
                 <ToggleRow key={key} label={TOGGLE_LABELS[key].label} checked={toggles[key]}
-                  onChange={v => setToggles(t => ({ ...t, [key]: v }))} intervention={intervention} />
+                  onChange={v => setToggles(t => ({ ...t, [key]: v }))} />
               ))}
               {page === 3 && (
                 <>
                   <ToggleRow label={TOGGLE_LABELS.thirdParty.label} checked={toggles.thirdParty}
-                    onChange={v => setToggles(t => ({ ...t, thirdParty: v }))} intervention={intervention} />
+                    onChange={v => setToggles(t => ({ ...t, thirdParty: v }))} />
                   <p style={{ fontSize: '0.78rem', color: '#aaa', lineHeight: 1.5, margin: '12px 0' }}>
                     By saving your preferences, you acknowledge our Cookie Policy and Privacy Notice (last updated 14 March 2025).
                     Settings may reset after 30 days.
@@ -121,7 +121,7 @@ export default function CookieV3() {
   )
 }
 
-function ToggleRow({ label, locked, checked, onChange, intervention }) {
+function ToggleRow({ label, locked, checked, onChange }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px solid #f0f0f0' }}>
       <div>

@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <nav style={{
       borderBottom: '1px solid var(--border)',
-      background: 'rgba(11,12,16,0.85)',
+      background: 'rgba(255, 253, 248, 0.88)',
       backdropFilter: 'blur(12px)',
       position: 'sticky',
       top: 0,
@@ -27,13 +27,12 @@ export default function Navbar() {
       }}>
         <Link to="/" style={{ textDecoration: 'none' }}>
           <span className="font-display" style={{
-            fontSize: '1.1rem',
+            fontSize: '1rem',
             fontWeight: 800,
-            color: 'var(--accent-amber)',
-            letterSpacing: '0.04em',
+            color: 'var(--text-primary)',
+            letterSpacing: 0,
           }}>
-            DARK<span style={{ color: 'var(--text-primary)' }}>PATTERN</span>
-            <span style={{ color: 'var(--accent-cyan)', marginLeft: 2 }}>LAB</span>
+            Dark Pattern <span style={{ color: 'var(--accent-cyan)' }}>Lab</span>
           </span>
         </Link>
 
@@ -45,12 +44,12 @@ export default function Navbar() {
           ].map(({ path, label }) => (
             <Link key={path} to={path} style={{
               fontFamily: 'var(--font-display)',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
+              fontSize: '0.88rem',
+              fontWeight: 700,
+              letterSpacing: 0,
+              textTransform: 'none',
               textDecoration: 'none',
-              color: isActive(path) ? 'var(--accent-amber)' : 'var(--text-muted)',
+              color: isActive(path) ? 'var(--accent-cyan)' : 'var(--text-muted)',
               transition: 'color 0.2s',
             }}>
               {label}

@@ -26,7 +26,7 @@ export function useSimResult(simKey) {
     }
   }
 
-  return { markComplete, ...tracker, intervention: session?.intervention_mode === 'intervention' }
+  return { markComplete, logEvent, ...tracker, intervention: session?.intervention_mode === 'intervention' }
 }
 
 export function getLocalResults() {
